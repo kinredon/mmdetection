@@ -123,7 +123,7 @@ python tools/test.py configs/pascal_voc/faster_rcnn_r50_fpn_1x_voc.py \
 ```shell
 ./tools/dist_test.sh configs/mask_rcnn_r50_fpn_1x_coco.py \
     checkpoints/mask_rcnn_r50_fpn_1x_20181010-069fa190.pth \
-    8 --format-only --options "jsonfile_prefix=./mask_rcnn_test-dev_results"
+    8 --format_only --options "jsonfile_prefix=./mask_rcnn_test-dev_results"
 ```
 
 You will get two json files `mask_rcnn_test-dev_results.bbox.json` and `mask_rcnn_test-dev_results.segm.json`.
@@ -133,7 +133,7 @@ You will get two json files `mask_rcnn_test-dev_results.bbox.json` and `mask_rcn
 ```shell
 ./tools/dist_test.sh configs/cityscapes/mask_rcnn_r50_fpn_1x_cityscapes.py \
     checkpoints/mask_rcnn_r50_fpn_1x_cityscapes_20200227-afe51d5a.pth \
-    8  --format-only --options "txtfile_prefix=./mask_rcnn_cityscapes_test_results"
+    8  --format_only --options "txtfile_prefix=./mask_rcnn_cityscapes_test_results"
 ```
 
 The generated png and txt would be under `./mask_rcnn_cityscapes_test_results` directory.
@@ -361,7 +361,7 @@ python tools/analyze_logs.py plot_curve log.json --keys loss_cls --legend loss_c
 - Plot the classification and regression loss of some run, and save the figure to a pdf.
 
 ```shell
-python tools/analyze_logs.py plot_curve log.json --keys loss_cls loss_reg --out losses.pdf
+python tools/analyze_logs.py plot_curve log.json --keys loss_cls loss_bbox --out losses.pdf
 ```
 
 - Compare the bbox mAP of two runs in the same figure.
@@ -373,7 +373,7 @@ python tools/analyze_logs.py plot_curve log1.json log2.json --keys bbox_mAP --le
 You can also compute the average training speed.
 
 ```shell
-python tools/analyze_logs.py cal_train_time ${CONFIG_FILE} [--include-outliers]
+python tools/analyze_logs.py cal_train_time log.json [--include-outliers]
 ```
 
 The output is expected to be like the following.
